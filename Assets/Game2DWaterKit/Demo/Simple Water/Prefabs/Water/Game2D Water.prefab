@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4049254837382672}
-  - component: {fileID: 253546666542960304}
   - component: {fileID: 61364593740625932}
   - component: {fileID: 33235919660423872}
   - component: {fileID: 23582687404244320}
   - component: {fileID: 114937427145656820}
+  - component: {fileID: 336534714}
   m_Layer: 4
   m_Name: Game2D Water
   m_TagString: Untagged
@@ -31,29 +31,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.87, y: -1.42, z: -0.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!253 &253546666542960304
-BuoyancyEffector2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392977326964464}
-  m_Enabled: 1
-  m_UseColliderMask: 1
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_SurfaceLevel: 1.176
-  m_Density: 2
-  m_LinearDrag: 5
-  m_AngularDrag: 5
-  m_FlowAngle: 0
-  m_FlowMagnitude: 0
-  m_FlowVariation: 0
 --- !u!61 &61364593740625932
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -78,7 +60,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.25, y: 2.45}
+  m_Size: {x: 17.82909, y: 7.54}
   m_EdgeRadius: 0
 --- !u!33 &33235919660423872
 MeshFilter:
@@ -99,10 +81,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -124,9 +108,10 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1728026893
+  m_SortingLayer: 2
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &114937427145656820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f8092d3bbd9544e9eded51ac39ec64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _size: {x: 6.25, y: 2.45}
+  _size: {x: 17.82909, y: 7.54}
   _meshMaskControlPoints:
   - anchorPointPosition: {x: -0.5, y: 0.5}
     firstHandlePosition: {x: -0.5, y: 0.25}
@@ -163,34 +148,39 @@ MonoBehaviour:
   _meshMaskSize: {x: 1, y: 1, z: 1}
   _meshMaskArePositionAndSizeLocked: 0
   subdivisionsCountPerUnit: 6
-  damping: 0.05
+  damping: 0.1
   stiffness: 50
   spread: 50
   useCustomBoundaries: 0
   firstCustomBoundary: 0.5
   secondCustomBoundary: -0.5
-  waterSimulationAreSineWavesActive: 0
-  waterSimulationSineWavesParameters: []
+  waterSimulationAreSineWavesActive: 1
+  waterSimulationSineWavesParameters:
+  - IsRandom: 0
+    Amplitude: 0.06
+    Length: 1.34
+    Velocity: 1.02
+    Offset: 0.41
   maximumdDynamicWaveDisturbance: 1
   shouldClampDynamicWaveDisturbance: 0
-  canWavesAffectRigidbodies: 0
-  wavesStrengthOnRigidbodies: 0.6
+  canWavesAffectRigidbodies: 1
+  wavesStrengthOnRigidbodies: 1.148
   activateOnCollisionOnWaterEnterRipples: 1
   activateOnCollisionOnWaterExitRipples: 0
-  onCollisionRipplesMinimumDisturbance: 0.1
-  onCollisionRipplesMaximumDisturbance: 0.6
-  onCollisionRipplesVelocityMultiplier: 0.12
+  onCollisionRipplesMinimumDisturbance: 0.6
+  onCollisionRipplesMaximumDisturbance: 1
+  onCollisionRipplesVelocityMultiplier: Infinity
   onCollisionRipplesIgnoreTriggers: 0
   onCollisionRipplesCollisionMask:
     serializedVersion: 2
-    m_Bits: 4294967279
+    m_Bits: 896
   onCollisionRipplesCollisionMinimumDepth: -10
   onCollisionRipplesCollisionMaximumDepth: 10
   onCollisionRipplesCollisionRaycastMaxDistance: 0.5
-  activateOnCollisionOnWaterMoveRipples: 0
+  activateOnCollisionOnWaterMoveRipples: 1
   onCollisionOnWaterMoveRipplesMaximumDisturbance: 0.1
   onCollisionOnWaterMoveRipplesMinimumVelocityToCauseMaximumDisturbance: 6
-  onCollisionOnWaterMoveRipplesDisturbanceSmoothFactor: 0.8
+  onCollisionOnWaterMoveRipplesDisturbanceSmoothFactor: 0.4
   onCollisionRipplesActivateOnWaterEnterParticleEffect: 0
   onCollisionRipplesOnWaterEnterParticleEffect: {fileID: 0}
   onCollisionRipplesOnWaterEnterParticleEffectSpawnOffset: {x: 0, y: -0.55, z: 0.03}
@@ -200,8 +190,7 @@ MonoBehaviour:
   onCollisionRipplesOnWaterEnterParticleEffectPoolSize: 10
   onCollisionRipplesOnWaterEnterParticleEffectPoolExpandIfNecessary: 1
   onCollisionRipplesActivateOnWaterEnterSoundEffect: 1
-  onCollisionRipplesOnWaterEnterAudioClip: {fileID: 8300000, guid: dbf49bdb427f5584ea28267b08b6bf6f,
-    type: 3}
+  onCollisionRipplesOnWaterEnterAudioClip: {fileID: 8300000, guid: dbf49bdb427f5584ea28267b08b6bf6f, type: 3}
   onCollisionRipplesUseConstantOnWaterEnterAudioPitch: 0
   onCollisionRipplesOnWaterEnterAudioPitch: 1
   onCollisionRipplesOnWaterEnterMinimumAudioPitch: 0.85
@@ -209,6 +198,7 @@ MonoBehaviour:
   onCollisionRipplesOnWaterEnterAudioVolume: 0.1
   onCollisionRipplesOnWaterEnterSoundEffectPoolSize: 10
   onCollisionRipplesOnWaterEnterSoundEffectPoolExpandIfNecessary: 1
+  onCollisionRipplesOnWaterEnterSoundEffectOutput: {fileID: 0}
   onCollisionRipplesActivateOnWaterExitParticleEffect: 0
   onCollisionRipplesOnWaterExitParticleEffect: {fileID: 0}
   onCollisionRipplesOnWaterExitParticleEffectSpawnOffset: {x: 0, y: 0, z: 0}
@@ -226,6 +216,7 @@ MonoBehaviour:
   onCollisionRipplesOnWaterExitAudioVolume: 1
   onCollisionRipplesOnWaterExitSoundEffectPoolSize: 10
   onCollisionRipplesOnWaterExitSoundEffectPoolExpandIfNecessary: 0
+  onCollisionRipplesOnWaterExitSoundEffectOutput: {fileID: 0}
   onWaterEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -234,16 +225,16 @@ MonoBehaviour:
       m_Calls: []
   activateConstantRipples: 1
   constantRipplesUpdateWhenOffscreen: 0
-  constantRipplesRandomizeDisturbance: 0
+  constantRipplesRandomizeDisturbance: 1
   constantRipplesSmoothDisturbance: 1
-  constantRipplesSmoothFactor: 0.125
+  constantRipplesSmoothFactor: 0.2
   constantRipplesDisturbance: 0.075
   constantRipplesMinimumDisturbance: 0.08
   constantRipplesMaximumDisturbance: 0.12
-  constantRipplesRandomizeTimeInterval: 0
+  constantRipplesRandomizeTimeInterval: 1
   constantRipplesTimeInterval: 0.5
   constantRipplesMinimumTimeInterval: 0.75
-  constantRipplesMaximumTimeInterval: 1.25
+  constantRipplesMaximumTimeInterval: 1.5
   constantRipplesRandomizeRipplesSourcesPositions: 1
   constantRipplesRandomizeRipplesSourcesCount: 8
   constantRipplesAllowDuplicateRipplesSourcesPositions: 0
@@ -257,6 +248,7 @@ MonoBehaviour:
   constantRipplesSoundEffectPoolSize: 10
   constantRipplesSoundEffectPoolExpandIfNecessary: 0
   constantRipplesAudioVolume: 1
+  constantRipplesSoundEffectOutput: {fileID: 0}
   constantRipplesActivateParticleEffect: 0
   constantRipplesParticleEffect: {fileID: 0}
   constantRipplesParticleEffectSpawnOffset: {x: 0, y: 0, z: 0}
@@ -276,6 +268,7 @@ MonoBehaviour:
   scriptGeneratedRipplesAudioVolume: 1
   scriptGeneratedRipplesSoundEffectPoolSize: 10
   scriptGeneratedRipplesSoundEffectPoolExpandIfNecessary: 0
+  scriptGeneratedRipplesSoundEffectOutput: {fileID: 0}
   scriptGeneratedRipplesActivateParticleEffect: 0
   scriptGeneratedRipplesParticleEffect: {fileID: 0}
   scriptGeneratedRipplesParticleEffectSpawnOffset: {x: 0, y: 0, z: 0}
@@ -287,10 +280,10 @@ MonoBehaviour:
   refractionRenderTextureResizeFactor: 1
   refractionCullingMask:
     serializedVersion: 2
-    m_Bits: 4294967241
+    m_Bits: 823
   refractionPartiallySubmergedObjectsCullingMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 951
   refractionRenderTextureFilterMode: 1
   refractionRenderTextureUseFixedSize: 0
   refractionRenderTextureFixedSize: 256
@@ -299,7 +292,7 @@ MonoBehaviour:
   reflectionPartiallySubmergedObjectsViewingFrustumHeightScalingFactor: 1
   reflectionCullingMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483647
   reflectionPartiallySubmergedObjectsCullingMask:
     serializedVersion: 2
     m_Bits: 0
@@ -308,12 +301,31 @@ MonoBehaviour:
   reflectionRenderTextureFixedSize: 256
   reflectionZOffset: 0
   reflectionYOffset: 0
-  _renderingModuleSortingLayerID: 0
+  _renderingModuleSortingLayerID: 1728026893
   _renderingModuleSortingOrder: 0
   _renderingModuleFarClipPlane: 1000
   _renderingModuleRenderPixelLights: 1
   _renderingModuleAllowMSAA: 0
   _renderingModuleAllowHDR: 0
-  buoyancyEffectorSurfaceLevel: 0.02
+  buoyancyEffectorSurfaceLevel: 0.07
   buoyancyEffectorSurfaceLevelLocation: 0
   boxColliderTopEdgeLocation: 0
+--- !u!253 &336534714
+BuoyancyEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392977326964464}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 128
+  m_SurfaceLevel: 3.2422
+  m_Density: 2
+  m_LinearDrag: 5
+  m_AngularDrag: 5
+  m_FlowAngle: 0
+  m_FlowMagnitude: 0
+  m_FlowVariation: 0

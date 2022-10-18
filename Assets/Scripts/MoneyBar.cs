@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,9 @@ public class MoneyBar : MonoBehaviour
     [SerializeField]
     private float maxMoneyValue;
 
+    [SerializeField] TextMeshProUGUI scoreCounter;
+    float currentMoney = 0f;
+
     private float noMoney = 0f;
 
     [SerializeField]
@@ -19,6 +23,8 @@ public class MoneyBar : MonoBehaviour
 
     [Header("Time")]
     private float DecreaseMoneyTime = 0.5f;
+
+    bool GameOver = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -35,6 +41,9 @@ public class MoneyBar : MonoBehaviour
     public void IncrementMoney(float Money)
     {
         moneyBar.value += Money;
+        currentMoney += Money;
+
+        scoreCounter.text = currentMoney.ToString();
     }
 
     IEnumerator LoseMoney()
@@ -44,5 +53,12 @@ public class MoneyBar : MonoBehaviour
             moneyBar.value -= DecreaseMoneyAmount;
             yield return new WaitForSeconds(DecreaseMoneyTime);
         }
+
+        GameOver = true;
+    }
+
+    public bool GetGameOver()
+    {
+        return GameOver;
     }
 }

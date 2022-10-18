@@ -14,21 +14,13 @@ public class NetCollision : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<BoxCollider2D>().sharedMaterial.name == "OutOfBounds")
+        if (collision.gameObject.name == "Left" || collision.gameObject.name == "Right")
         {
             AudioSource.PlayClipAtPoint(bounceClip, Camera.main.transform.position);
         }
-        if (collision.gameObject.GetComponent<BoxCollider2D>().sharedMaterial.name == "Ocean Floor")
+        if (collision.gameObject.name == "Ocean Floor")
         {
             AudioSource.PlayClipAtPoint(oceanFloor, Camera.main.transform.position);
         }    
-        else
-        {
-
-        }
     }
-
-    
-
-
 }
