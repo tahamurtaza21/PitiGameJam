@@ -13,9 +13,11 @@ Material:
   - Water2D_ApplyEmissionColor
   - Water2D_ColorGradient
   - Water2D_Reflection
-  - Water2D_ReflectionFadeLinear
+  - Water2D_ReflectionFadeExponentialThree
   - Water2D_Refraction
   - Water2D_SmoothLines
+  - Water2D_Surface
+  - Water2D_SurfaceHasAbsoluteThickness
   - Water2D_WaterNoise
   - Water2D_WaterTexture
   - Water2D_WaterTextureScroll
@@ -64,15 +66,15 @@ Material:
     - _Game2DWaterKit_MaterialType: 0
     - _Mode: 2000
     - _ReflectionNoiseSpeed: 0.055
-    - _ReflectionNoiseStrength: 0.0402
-    - _ReflectionVisibility: 0.435
+    - _ReflectionNoiseStrength: 0.0419
+    - _ReflectionVisibility: 0.151
     - _RefractionAmountOfBending: 0
     - _RefractionNoiseSpeed: 0.045500003
-    - _RefractionNoiseStrength: 0.0047
+    - _RefractionNoiseStrength: 0.0055
     - _SpriteMaskInteraction: 5
     - _SpriteMaskInteractionRef: 1
     - _SrcBlend: 5
-    - _SubmergeLevel: 0
+    - _SubmergeLevel: 0.413
     - _SubmergeLevelEdgeLineThickness: 0.1
     - _SurfaceColorGradientOffset: 0
     - _SurfaceLevel: 0
@@ -98,22 +100,22 @@ Material:
     - _Water2D_IsSmoothLinesEnabled: 1
     - _Water2D_IsSubmergeLevelEdgeLineEnabled: 0
     - _Water2D_IsSurfaceColorGradientEnabled: 0
-    - _Water2D_IsSurfaceEnabled: 0
+    - _Water2D_IsSurfaceEnabled: 1
     - _Water2D_IsSurfaceHasAbsoluteThicknessEnabled: 1
     - _Water2D_IsSurfaceLevelEdgeLineEnabled: 0
     - _Water2D_IsSurfaceNoiseEnabled: 0
-    - _Water2D_IsTopEdgeLineEnabled: 1
+    - _Water2D_IsTopEdgeLineEnabled: 0
     - _Water2D_IsWaterNoiseEnabled: 1
     - _Water2D_IsWaterSurfaceTextureSheetEnabled: 0
     - _Water2D_IsWaterSurfaceTextureSheetWithLerpEnabled: 0
     - _Water2D_IsWaterTextureSheetEnabled: 0
     - _Water2D_IsWaterTextureSheetWithLerpEnabled: 0
-    - _WaterColorGradientOffset: 0.324
-    - _WaterEmissionColorIntensity: 1.03
+    - _WaterColorGradientOffset: -0.014
+    - _WaterEmissionColorIntensity: 1.49
     - _WaterNoiseSpeed: 0.02
     - _WaterNoiseStrength: 0.507
-    - _WaterTextureOpacity: 0.09
-    - _WaterTextureScrollingSpeedX: 0.68
+    - _WaterTextureOpacity: 0.04
+    - _WaterTextureScrollingSpeedX: -0.9
     - _WaterTextureScrollingSpeedY: 0
     - _WaterTextureSheetColumns: 1
     - _WaterTextureSheetFramesCount: 1
@@ -123,13 +125,13 @@ Material:
     - _WaterTextureSheetRows: 1
     - _ZWrite: 0
     m_Colors:
-    - _ReflectionFadingParameters: {r: 1, g: 0, b: 0, a: 0}
+    - _ReflectionFadingParameters: {r: 1, g: 2, b: 0, a: 0}
     - _ReflectionNoiseScaleOffset: {r: 5, g: 15, b: 1.84, a: 0.83}
     - _ReflectionNoiseTiling: {r: 0.547, g: 1, b: 0, a: 0}
     - _RefractionNoiseScaleOffset: {r: 5.5, g: 3, b: 0, a: 0}
     - _RefractionNoiseTiling: {r: 1, g: 1, b: 0, a: 0}
     - _SubmergeLevelEdgeLineColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SurfaceColor: {r: 0.14, g: 0.54, b: 0.85, a: 0.25}
+    - _SurfaceColor: {r: 0.14195444, g: 0.37030786, b: 0.5471698, a: 0.25}
     - _SurfaceColorGradientEnd: {r: 1, g: 1, b: 1, a: 0.25}
     - _SurfaceColorGradientStart: {r: 1, g: 1, b: 1, a: 0.25}
     - _SurfaceLevelEdgeLineColor: {r: 1, g: 1, b: 1, a: 1}
@@ -138,10 +140,10 @@ Material:
     - _SurfaceTextureTilingParameters: {r: 0, g: 0, b: 0, a: 0}
     - _TopEdgeLineColor: {r: 0.38456747, g: 0.43960735, b: 0.5471698, a: 1}
     - _WaterColor: {r: 0.11, g: 0.64, b: 0.92, a: 0.25}
-    - _WaterColorGradientEnd: {r: 0, g: 0.016483061, b: 0.1981132, a: 0.92941177}
-    - _WaterColorGradientStart: {r: 0.011569952, g: 0.16435313, b: 0.49056602, a: 0.38431373}
+    - _WaterColorGradientEnd: {r: 0, g: 0.016483061, b: 0.1981132, a: 0.8}
+    - _WaterColorGradientStart: {r: 0.058823533, g: 0.5254902, b: 0.77647066, a: 0.07058824}
     - _WaterEmissionColor: {r: 0.2247241, g: 0.4716981, b: 0.43948412, a: 0}
-    - _WaterNoiseScaleOffset: {r: -4.4, g: 15.26, b: 0, a: 0}
-    - _WaterNoiseTiling: {r: 0.262, g: 1, b: 0, a: 0}
+    - _WaterNoiseScaleOffset: {r: -4.4, g: 35.22, b: 0, a: 0}
+    - _WaterNoiseTiling: {r: 0.456, g: 0.671, b: 0, a: 0}
     - _WaterTextureTilingParameters: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

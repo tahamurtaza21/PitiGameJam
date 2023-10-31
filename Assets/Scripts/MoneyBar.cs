@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class MoneyBar : MonoBehaviour
 {
@@ -24,13 +26,20 @@ public class MoneyBar : MonoBehaviour
     [Header("Time")]
     private float DecreaseMoneyTime = 0.5f;
 
-    bool GameOver = false;
+    [SerializeField] TextMeshProUGUI FinalScore;
+
+    [SerializeField]
+    GameObject gameCanvas;
+    [SerializeField]
+    GameObject gameOverCanvas;
 
     // Start is called before the first frame update
     void Awake()
     {
         moneyBar = gameObject.GetComponent<Slider>();
         moneyBar.value = maxMoneyValue;
+        gameCanvas.SetActive(true);
+        gameOverCanvas.SetActive(false);
     }
 
     private void Start()
@@ -54,11 +63,26 @@ public class MoneyBar : MonoBehaviour
             yield return new WaitForSeconds(DecreaseMoneyTime);
         }
 
-        GameOver = true;
+        GameOver();
     }
 
-    public bool GetGameOver()
+    void GameOver()
     {
-        return GameOver;
+        Time.timeScale = 0;
+        gameCanvas.SetActive(false);
+        gameOverCanvas.SetActive(true);
+        FinalScore.text = (currentMoney.ToString());
+
+    }
+
+    public void GameRestart()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
     }
 }

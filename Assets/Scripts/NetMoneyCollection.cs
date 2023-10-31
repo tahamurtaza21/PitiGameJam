@@ -16,10 +16,22 @@ public class NetMoneyCollection : MonoBehaviour
     [SerializeField]
     GameObject LostFishes;
 
+    Animator anim;
+
+    Rigidbody2D rb2d;
+
+    [SerializeField]
+    AudioClip collectFish;
+
+    [SerializeField]
+    AudioClip collectinShip;
+
     private void Awake()
     {
         moneyScript = FindObjectOfType<MoneyBar>();
         net = FindObjectOfType<NetMovement>();
+        anim =  GetComponent<Animator>();
+        rb2d = GetComponentInParent<Rigidbody2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,16 +48,18 @@ public class NetMoneyCollection : MonoBehaviour
                 GameObject lostfishes = Instantiate(LostFishes, transform.position, Quaternion.identity);
                 lostfishes.GetComponent<ParticleSystem>().Play();
                 Destroy(lostfishes, 3f);
+                anim.SetFloat("Fishes", 0f);
             }
-
-            
             moneyInNet = 0f;
         }
 
-        if (collision.gameObject.tag == "Pickable")
+        else if (collision.gameObject.tag == "Pickable" && rb2d.velocity.y >= 0f)
         {
+
             Destroy(collision.gameObject);
-            moneyInNet += 10f;
+            moneyInNet += collision.gameObject.GetComponent<SeaStuffMovement>().GetValue();
+            anim.SetFloat("Fishes", moneyInNet);
+            AudioSource.PlayClipAtPoint(collectFish,Camera.main.transform.position, 0.3f);
             //Add Sprite Logic
 
             //Debug.Log("Add Money");
@@ -59,6 +73,8 @@ public class NetMoneyCollection : MonoBehaviour
                 //Debug.Log("MoneyAdded");
                 moneyScript.IncrementMoney(moneyInNet);
                 moneyInNet = 0f;
+                anim.SetFloat("Fishes", 0f);
+                AudioSource.PlayClipAtPoint(collectinShip, Camera.main.transform.position, 0.3f);
             }
         }
     }

@@ -19,14 +19,14 @@ public class NetMovement : MonoBehaviour
     [SerializeField]
     float alterLength = 0.0001f;
     float timeToAlterLength = 0.02f;
-    float MaxLength = 7.0f;
-    float MinLength = 0.5f;
+    float MaxLength = 8.0f;
+    float MinLength = 0.8f;
 
     bool isHurt = false;
 
     void Awake()
     {
-        Rope = GetComponentInChildren<LineRenderer>();
+        Rope = GetComponent<LineRenderer>();
         anchor = GetComponent<SpringJoint2D>();
     }
 
@@ -45,34 +45,34 @@ public class NetMovement : MonoBehaviour
 
     private void NetUpAndDown()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.S))
         {
-            Debug.Log("True");
+            //Debug.Log("True");
             StartCoroutine("MoveDown");
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.W))
         {
             StartCoroutine("MoveUp");
+
         }
     }
 
     IEnumerator MoveDown()
     {
-        while (Input.GetMouseButton(0) && isHurt == false)
+        while ((Input.GetMouseButton(0) || Input.GetKey(KeyCode.S)) && isHurt == false)
         {
-            anchor.distance = Mathf.Clamp(anchor.distance + alterLength, MinLength, MaxLength);
-            netCollider.enabled = false;
+            anchor.distance = Mathf.Clamp(anchor.distance + alterLength, MinLength, MaxLength);            
             yield return new WaitForSecondsRealtime(timeToAlterLength);
         }
+        //netCollider.enabled = true;
     }
 
     IEnumerator MoveUp()
     {
-        while (Input.GetMouseButton(1) && isHurt == false)
+        while ( (Input.GetMouseButton(1) || Input.GetKey(KeyCode.W) ) && isHurt == false)
         {
-            anchor.distance = Mathf.Clamp(anchor.distance - alterLength, MinLength, MaxLength);
-            netCollider.enabled = true;
+            anchor.distance = Mathf.Clamp(anchor.distance - alterLength, MinLength, MaxLength);            
             yield return new WaitForSecondsRealtime(timeToAlterLength);
         }
     }
@@ -84,7 +84,16 @@ public class NetMovement : MonoBehaviour
             //Debug.Log(isHurt);
             isHurt = true;
             netCollider.enabled = false;
-            anchor.distance -= alterLength * 5;
+            if( (anchor.distance -= alterLength * 5) < MinLength)
+            {
+                anchor.distance = MinLength;
+            }
+            else
+            {
+                anchor.distance -= alterLength * 5;
+            }
+            
+
             yield return new WaitForSeconds(0.02f);
         }
 
@@ -96,19 +105,17 @@ public class NetMovement : MonoBehaviour
     void LimitLength()
     {
         // Limits Length properly 
-
         Vector3 position = transform.position;
-        float yPosition = Mathf.Clamp(transform.position.y, -7.0f , Ship.transform.position.y - 0.5f);
+        float yPosition = Mathf.Clamp(transform.position.y, -7.0f, 2.55f);
         position.y = yPosition;
 
-        transform.position = position;
+        transform.position = position;  
     }
 
     void DrawRope()
     {
-        Rope.SetPosition(0, transform.position);
-        Rope.SetPosition(1, Ship.transform.position);
-        
+        Rope.SetPosition(0, Ship.transform.position);
+        Rope.SetPosition(1, transform.position);
     }
 }
 

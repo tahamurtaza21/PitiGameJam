@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pickable
   - Shark
+  - Net
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Bubbles
   - Background
   - Hit
-  - 
+  - VerticalBounds
   - 
   - 
   - 

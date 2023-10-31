@@ -35,12 +35,8 @@ public class ShipMovement : MonoBehaviour
     {
         // Limits Rotation properly 
 
-        Quaternion updatedRotation = transform.localRotation;
-
-        float zRotation = Mathf.Clamp(transform.localRotation.z, Mathf.Deg2Rad * -10f, Mathf.Deg2Rad * 10f);
-        updatedRotation.z = zRotation;
-
-        transform.rotation = updatedRotation;
+        rb2D.rotation = Mathf.Clamp(rb2D.rotation, -20f , 20f);
+        
 
         //Debug.Log(updatedRotation);
     }

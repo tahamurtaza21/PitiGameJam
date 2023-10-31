@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
 
-    [SerializeField] GameObject Fishes;
+    [SerializeField] GameObject[] Fishes;
     [SerializeField] GameObject Shark;
 
     [SerializeField] Transform Left;
@@ -76,9 +76,18 @@ public class Spawner : MonoBehaviour
     {
         int randomNumber = Random.Range(0, 10);
 
-        if (randomNumber > 1)
+        if (randomNumber > 2)
         {
-            return Fishes;
+            int WhichFish = Random.Range(0, 5);
+            if(WhichFish > 3)
+            {
+                return Fishes[1];
+            }
+            else
+            {
+                return Fishes[0];
+            }
+            
         }
         else
         {
